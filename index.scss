@@ -1,0 +1,35 @@
+
+@import "_base.scss";
+
+
+.error {
+  margin: $margin-card;
+  border-radius: 10px;
+  box-shadow: -5px 0 red;
+  background-color: $background-color;
+  display: grid;
+  width: fit-content;
+  padding: 20px;
+  // Definimos la estructura del grid con grid-template-areas.
+  grid-template-areas:
+    "imagen error-text"
+    "imagen info";
+
+  & img {
+    grid-area: imagen;
+    width: $icon-width;
+    height: $icon-height;
+  }
+
+  & h1 {
+    grid-area: error-text;
+    @include text-properties($color: rgb(201, 8, 8));
+  }
+
+  & p {
+    
+    grid-area: info;
+    font-weight: bold;
+    @include text-properties($color: rgb(156, 8, 8));
+  }
+}
