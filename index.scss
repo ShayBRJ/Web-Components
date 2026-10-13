@@ -1,0 +1,51 @@
+.casilla {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.casilla .heart-icon {
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+    background-position: left;
+    background: url('./imgs/heart.png');
+    position: absolute;
+    
+}
+
+.casilla .heart-icon.liked {
+
+  animation: like-anim 0.7s steps(28) forwards;
+
+}
+
+@keyframes like-anim {
+  to {
+    background-position: right;
+  }
+}
+
+.casilla .bg-heart {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    height: 50%;
+    
+    border-radius: 50%;
+}
+
+.casilla .bg-heart:hover {
+    background-color: pink;
+}
+
+.casilla .likes {
+  font-size: 20px;
+  font-family: "Roboto", sans-serif;
+  color: gray;
+  font-weight: 900;
+  margin-left: 6px;
+}
