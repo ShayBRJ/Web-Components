@@ -1,7 +1,7 @@
 import styles from "../index.css" with { type: "css" };
 
 class LikeButton extends HTMLElement {
-
+  // Método constructor de LikeButton.
   constructor () {
     super();
     const template = document.getElementById('tpl-like-button');
@@ -10,7 +10,7 @@ class LikeButton extends HTMLElement {
     this._liked = false;
     this._especie = null;
   }
-
+   // Una ves se incluya al DOM principal.
   connectedCallback() {
     this.shadowRoot.adoptedStyleSheets.push(styles);
     const heartIcon = this.shadowRoot.querySelector(".casilla .heart-icon");
@@ -43,7 +43,7 @@ class LikeButton extends HTMLElement {
     });
   }
 
-
+  // En caso de descoplarse del DOM.
   disconnectedCallback() {}
 
 
@@ -54,7 +54,7 @@ class LikeButton extends HTMLElement {
     return [""];
   };
 
-
+  // SETTERS de los atributos.
   set valoracion(valoracion) {
     this.shadowRoot.querySelector(".casilla .likes").innerHTML = Number(valoracion);
   }
@@ -75,7 +75,7 @@ class LikeButton extends HTMLElement {
 
   }
 
-
+  // GETTERS de los atributos.
   get liked() {
     return this._liked;
   }

@@ -3,18 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script type="module" src="./components/LikeButton.js"></script>
+  <script type="module" src="./components/ScoreBox.js"></script>
   <title>Like Button</title>
 </head>
 <body>
-  <template class="like-button">
-    <div class="casilla">
-      <div class = bg-heart>
-        <div class=heart-icon></div> 
+  <template id="tpl-score-box">
+    <div class="valoration-card">
+      <div class="icon">
+        <img src="./imgs/like.png" alt="Like icon">
       </div>
-      <span class="likes">0</span>
+      <div class="amount">9</div>
     </div>
   </template>
-  <like-button></like-button>
+  <score-box></score-box>
 </body>
 </html>

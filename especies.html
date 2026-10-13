@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script type="module" src="./components/LikeButton.js"></script>
+  <script type="module" src="./components/ScoreBox.js"></script>
   <title>Ejercicio Web Components — Especies de Canarias</title>
   <style>
     /* ── Reset y base ─────────────────────────────────── */
@@ -63,10 +64,20 @@
       box-shadow: 0 6px 20px rgba(0,0,0,.14);
     }
     .card-icono {
-      font-size: 3rem;
-      text-align: center;
+      position: relative;
+      display: flex;
+      justify-content: center;
       padding: 1.2rem 0 0.6rem;
       background: linear-gradient(135deg, #d4f4dd, #a8d8b8);
+    }
+    .icono {
+      font-size: 3rem;
+    }
+
+    .score {
+      position: absolute;
+      top: 10%;
+      right: 5%;
     }
     .card-body { padding: 0.8rem 1rem 1rem; }
     .card-nombre { font-weight: 700; font-size: 1rem; }
@@ -97,14 +108,14 @@
 
   <div class="card">
     <div class="card-icono">
-      <slot name="icono">🌱</slot>
+      <slot class=icono name="icono">🌱</slot>
+      <score-box class="score" id="score"></score-box>
     </div>
     <div class="card-body">
       <div class="card-nombre"><slot name="nombre">Especie</slot></div>
       <div class="card-cientifico"><slot name="cientifico"></slot></div>
       <span class="card-isla"><slot name="isla">Canarias</slot></span>
       <span class="card-amenaza" id="badge-amenaza"></span>
-      
     </div>
   </div>
 </template>
@@ -202,6 +213,18 @@
     </div>
   </template>
 
+
+<!-- ════════════════════════════════════════════════════
+     PLANTILLA 4 — Componente Like (vista tarjetas)
+     ═══════════════════════════════════════════════════ -->
+    <template id="tpl-score-box">
+    <div class="valoration-card">
+      <div class="icon">
+        <img src="./imgs/like.png" alt="Like icon">
+      </div>
+      <div class="amount">9</div>
+    </div>
+  </template>
 
 
 <!-- ════════════════════════════════════════════════════
@@ -348,7 +371,7 @@ class EspecieCard extends HTMLElement {
   connectedCallback() {
     // Pintamos el badge de amenaza (necesitamos el atributo ya seteado)
     this._actualizarAmenaza();
-
+    this._actualizarPuntaje();
     // ── Evento nativo: escuchamos click dentro del shadow ──
     this.shadowRoot.querySelector('.card')
       .addEventListener('click', () => this._alHacerClic());
@@ -358,6 +381,7 @@ class EspecieCard extends HTMLElement {
       if(e.detail.especie.id === this._especie.id) {
         this._especie.valoracion = e.detail.likeAmount;
         this._especie.liked = e.detail.liked;
+        this._actualizarPuntaje();
       }
     })
   }
@@ -366,7 +390,11 @@ class EspecieCard extends HTMLElement {
     // Cada vez que cambie el atributo "amenaza", actualizamos el badge
     if (nombre === 'amenaza') this._actualizarAmenaza();
   }
-
+  _actualizarPuntaje() {
+    
+    const valoracion = this._especie.valoracion;
+    const score = this.shadowRoot.getElementById('score').setAttribute('score', valoracion);
+  }
   _actualizarAmenaza() {
     const badge   = this.shadowRoot.getElementById('badge-amenaza');
     const amenaza = this.getAttribute('amenaza') ?? 'LC';

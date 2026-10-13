@@ -37,4 +37,26 @@
   font-weight: 900;
   margin-left: 6px; }
 
+.valoration-card {
+  border-radius: 10px;
+  width: fit-content;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 1%;
+  gap: 0.5rem;
+  margin-inline: 0.2rem;
+  background-color: #f17b7b; }
+  .valoration-card .amount {
+    font-size: 0.8rem;
+    font-family: "Roboto", sans-serif;
+    font-weight: bold;
+    color: white;
+    margin-right: 0.5rem; }
+  .valoration-card img {
+    margin-left: 0.5rem;
+    width: 0.8rem;
+    height: 0.8rem; }
+
 /*# sourceMappingURL=index.css.map */

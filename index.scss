@@ -1,3 +1,6 @@
+$icon-size: 0.8rem;
+
+
 .casilla {
     width: 100px;
     height: 100px;
@@ -48,4 +51,33 @@
   color: gray;
   font-weight: 900;
   margin-left: 6px;
+}
+
+
+.valoration-card {
+  border-radius: 10px;
+  width: fit-content;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 1%;
+  gap: 0.5rem;
+  margin-inline: 0.2rem;
+  background-color: rgb(241, 123, 123);
+  & .amount {
+    font-size: $icon-size;
+    font-family: "Roboto", sans-serif;
+    font-weight: bold;
+    color: white;
+    margin-right: 0.5rem;
+    
+  }
+
+  & img {
+    margin-left: 0.5rem;
+
+    width: $icon-size;
+    height: $icon-size;
+  }
 }
