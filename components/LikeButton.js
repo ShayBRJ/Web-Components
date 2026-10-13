@@ -7,7 +7,8 @@ class LikeButton extends HTMLElement {
     const template = document.getElementById('tpl-like-button');
     this.attachShadow({mode : "open"})
     this.shadowRoot.appendChild(template.content.cloneNode(true));
-    let likeAmount = 0;
+    this.liked = false;
+    this._especie = null;
   }
 
   connectedCallback() {
@@ -16,17 +17,34 @@ class LikeButton extends HTMLElement {
     const likesAmountLabel = this.shadowRoot.querySelector(".casilla .likes");
     
     heartIcon.addEventListener("click", () => {
-      heartIcon.classList.toggle("liked");
-      let likeAmount = Number(likesAmountLabel.innerHTML);
-      console.log(likeAmount)
-      if(heartIcon.classList.contains("liked")) {
-        likeAmount++
-      }
-      else {
-        likeAmount--;
-      }
-      likesAmountLabel.innerHTML = likeAmount;
-    });
+  console.log("1. Se ha pulsado el corazón");
+
+  heartIcon.classList.toggle("liked");
+
+  let likeAmount = Number(likesAmountLabel.innerHTML);
+
+  if (heartIcon.classList.contains("liked")) {
+    likeAmount++;
+    this.liked = true;
+  } else {
+    likeAmount--;
+    this.liked = false;
+  }
+
+  likesAmountLabel.innerHTML = likeAmount;
+
+  console.log("2. Voy a emitir like-update");
+
+  this.dispatchEvent(new CustomEvent("like-update", {
+    detail: {
+      liked: this.liked,
+      likeAmount: likeAmount,
+      especie: this._especie
+    },
+    bubbles: true,
+    composed: true
+  }));
+});
   }
   disconnectedCallback() {}
   attributeChangedCallback(nombre, newval, oldval) {
@@ -43,6 +61,14 @@ class LikeButton extends HTMLElement {
   set valoracion(valoracion) {
     this.shadowRoot.querySelector(".casilla .likes").innerHTML = Number(valoracion);
   }
+
+  set especie(value) {
+  this._especie = value;
+}
+
+get especie() {
+  return this._especie;
+}
 };
 
 

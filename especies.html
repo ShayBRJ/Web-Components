@@ -352,6 +352,15 @@ class EspecieCard extends HTMLElement {
     // ── Evento nativo: escuchamos click dentro del shadow ──
     this.shadowRoot.querySelector('.card')
       .addEventListener('click', () => this._alHacerClic());
+    
+    document.addEventListener("like-update", e => {
+      
+      if(e.detail.especie.id === this._especie.id) {
+        console.log(e.detail.especie);
+        this._especie.valoracion = e.detail.likeAmount;
+        this._especie.liked = e.detail.liked;
+      }
+    })
   }
 
   attributeChangedCallback(nombre, anterior, nuevo) {
@@ -429,6 +438,7 @@ class EspecieDetalle extends HTMLElement {
 
   /* Método privado — rellena el shadow DOM con los datos de la especie */
   _mostrar(especie) {
+    this.shadowRoot.getElementById('like').especie = especie;
     this.shadowRoot.getElementById('like').valoracion = especie.valoracion;
     this.shadowRoot.getElementById('d-icono').textContent      = especie.icono;
     this.shadowRoot.getElementById('d-nombre').textContent     = especie.nombre;
