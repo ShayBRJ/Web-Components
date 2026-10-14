@@ -7,7 +7,8 @@ class Error extends HTMLElement {
   constructor () {
     super();
     console.log("Creado: Se ha creado un elemento Error");
-    this.attachShadow({mode: "open"}); // Se crea un Shadow DOM activado en el DOM principal.
+    // Se crea un Shadow DOM activado en el DOM principal.
+    this.attachShadow({mode: "open"}); 
   }
 
   connectedCallback() {
@@ -22,7 +23,8 @@ class Error extends HTMLElement {
   attributeChangedCallback(attr, new_value, old_value) {
     console.log("Atributo modificado.");
     if (attr === "error-id" && old_value !== new_value) {
-      this.error_id = this.getAttribute("error-id"); // Obtenemos el valor del atributo del props con identificador name.
+      // Obtenemos el valor del atributo del props con identificador name.
+      this.error_id = this.getAttribute("error-id"); 
       this.render();
     }
   }
