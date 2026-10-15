@@ -1,0 +1,28 @@
+.error {
+  margin: 10px;
+  border-radius: 10px;
+  box-shadow: -5px 0 red;
+  background-color: #f5dede;
+  display: grid;
+  width: fit-content;
+  padding: 20px;
+  grid-template-areas: "imagen error-text" "imagen info"; }
+  .error img {
+    grid-area: imagen;
+    width: 80px;
+    height: 80px; }
+  .error h1 {
+    grid-area: error-text;
+    color: #c90808;
+    width: 100%;
+    text-fit: grow;
+    margin: 5px; }
+  .error p {
+    grid-area: info;
+    font-weight: bold;
+    color: #9c0808;
+    width: 100%;
+    text-fit: grow;
+    margin: 5px; }
+
+/*# sourceMappingURL=index.css.map */

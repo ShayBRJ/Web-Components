@@ -1,0 +1,12 @@
+$icon-width: 80px;
+$icon-height: 80px;
+$background-color: rgb(245, 222, 222);
+$margin-card: 10px;
+
+
+@mixin text-properties ($color) {
+  color: $color;
+  width: 100%;
+  text-fit: grow;
+  margin: 5px;
+}
