@@ -47,3 +47,29 @@ Aclara cómo funciona \`Error\`Explica mejor \`observedAttributes\`
 Finalmente, como resultado tenemos la siguiente página web que incorpora el Web Component insertado.
 
 ![Error Component](imgs/error.png)
+
+
+## Ejercicio 2
+
+**Sobre el ejemplo de WebComponents de especies autóctonas Canarias, explicado en clase, agregar un componente que actualice las valoraciones obtenidas por la especie. Cada valoración se obtiene cuando el usuario hace click en el botón like del panel donde se muestra la información extendida.**
+
+### Web Components creados para la realización del ejercicio
+
+LikeButton (like-button) es un componente interactivo que representa un botón de "me gusta" con forma de corazón. Usa Shadow DOM para encapsular su plantilla y estilos, y guarda internamente el estado del like (_liked) y la especie asociada (_especie). Al hacer clic en el corazón, alterna su estado, actualiza el contador y emite un evento like-update. Expone setters y getters como valoracion, especie y liked.
+
+ScoreBox (score-box) es un componente más simple que muestra una puntuación numérica. También usa Shadow DOM, y observa el atributo score, de modo que cualquier cambio dispara attributeChangedCallback y actualiza el elemento .amount dentro de su Shadow DOM.
+
+## Comunicación entre componentes
+
+La comunicación se basa en dos vías: eventos hacia arriba y atributos o propiedades hacia abajo. LikeButton emite el CustomEvent like-update con detail (liked, likeAmount, especie), y lo hace con bubbles: true y composed: true para que pueda capturarse fuera del Shadow DOM.
+
+EspecieCard se suscribe al evento like-update que emite el LikeButton para mantenerse sincronizada con él. Cuando lo recibe, comprueba que el id de la especie del evento coincide con el de su propia especie y, de ser así, actualiza su valoración y su estado liked con los datos recibidos en e.detail, para finalmente refrescar la puntuación mostrada en la tarjeta.
+
+El componente contenedor (score-box) escucha ese evento, lee e.detail y propaga el nuevo valor al ScoreBox mediante setAttribute('score', ...). Así, ScoreBox reacciona al cambio de atributo y refresca su vista automáticamente.
+
+De este modo, los componentes no se conocen entre sí: se comunican por eventos que suben y datos que bajan, manteniendo bajo acoplamiento.
+
+
+![Comunicación entre Componentes](imgs/comunicacion1.png)
+
+![Comunicación entre Componentes](imgs/comunicacion2.png)
