@@ -1,4 +1,4 @@
-import styles from "./index.css" with { type: "css"};
+import styles from "./error.css" with { type: "css"};
 
 // ATRIBUTOS CONSTANTES DE PROPIEDADES POR DEFECTO.
 const DEFAULT_VALUE = "400";
