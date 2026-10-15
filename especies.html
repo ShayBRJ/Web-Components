@@ -375,7 +375,12 @@ class EspecieCard extends HTMLElement {
     // ── Evento nativo: escuchamos click dentro del shadow ──
     this.shadowRoot.querySelector('.card')
       .addEventListener('click', () => this._alHacerClic());
-    
+    /*
+      Escucha la llamada del component del icono de Like y actualiza el valor
+      del custom component creado para sincronizar las valoraciones, tanto al presionar
+      el botón de like como al deshabilitarlo.
+
+    */
     document.addEventListener("like-update", e => {
       
       if(e.detail.especie.id === this._especie.id) {
@@ -391,7 +396,7 @@ class EspecieCard extends HTMLElement {
     if (nombre === 'amenaza') this._actualizarAmenaza();
   }
   _actualizarPuntaje() {
-    
+    // Actualizamos el valor del propio Web Component con los likes acumulados.
     const valoracion = this._especie.valoracion;
     const score = this.shadowRoot.getElementById('score').setAttribute('score', valoracion);
   }
