@@ -1,0 +1,62 @@
+.casilla {
+  width: 100px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+
+.casilla .heart-icon {
+  width: 100px;
+  height: 100px;
+  cursor: pointer;
+  background-position: left;
+  background: url("./imgs/heart.png");
+  position: absolute; }
+
+.casilla .heart-icon.liked {
+  animation: like-anim 0.7s steps(28) forwards; }
+
+@keyframes like-anim {
+  to {
+    background-position: right; } }
+.casilla .bg-heart {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  height: 50%;
+  border-radius: 50%; }
+
+.casilla .bg-heart:hover {
+  background-color: pink; }
+
+.casilla .likes {
+  font-size: 20px;
+  font-family: "Roboto", sans-serif;
+  color: gray;
+  font-weight: 900;
+  margin-left: 6px; }
+
+.valoration-card {
+  border-radius: 10px;
+  width: fit-content;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 1%;
+  gap: 0.5rem;
+  margin-inline: 0.2rem;
+  background-color: #f17b7b; }
+  .valoration-card .amount {
+    font-size: 0.8rem;
+    font-family: "Roboto", sans-serif;
+    font-weight: bold;
+    color: white;
+    margin-right: 0.5rem; }
+  .valoration-card img {
+    margin-left: 0.5rem;
+    width: 0.8rem;
+    height: 0.8rem; }
+
+/*# sourceMappingURL=index.css.map */
